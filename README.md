@@ -38,3 +38,5 @@ I opens a tmux session with several terminals and the windows of the Viragh's si
 Note: The tmux prefix has been changed to Ctrl - a (instead of default Ctrl - b)
 
 Press spacebar to launch the simulation.
+
+To quit the simulation, press Ctrl-a and ':' to access tmux CLI and type 'kill-session' then press enter.
