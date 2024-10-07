@@ -27,7 +27,7 @@ tar -jxvf ns-allinone-3.37.tar.bz2
 
 # install ns-3 in /usr/ns3
 RUN cd ns-allinone-3.37/ns-3.37 &&\
-./ns3 configure --prefix=/usr/ns3 &&\
+./ns3 configure --prefix=/usr/ns3 --build-profile optimized --disable-asserts &&\
 ./ns3 install
 
 # clean ns-3 archive
@@ -50,13 +50,14 @@ RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/ns3/lib" >> ~/.bashrc && 
     echo "source /home/$USERNAME/sim_ws/install/setup.bash" >> ~/.bashrc
 
 # ========== DANCERS ==========
+ARG CACHE_BUST=1
 # Get the source of the DANCERS components
 RUN git clone https://github.com/Chroma-CITI/DANCERS sim_ws
 
 WORKDIR /home/$USERNAME/sim_ws
 
 # Build all the ROS nodes (-i to run bash iteratively so that ~/.bashrc does not exit early | CMAKE -w flag to disable CMAKE warnings)
-RUN /bin/bash -c -i "colcon build --packages-ignore gazebo_sim --cmake-args -DCMAKE_CXX_FLAGS='-w'"
+RUN /bin/bash -c -i "colcon build --packages-ignore gazebo_sim multirobot_control --cmake-args -DCMAKE_CXX_FLAGS='-w'"
 
 # ========== Viragh's simulator ==========
 WORKDIR /home/$USERNAME
