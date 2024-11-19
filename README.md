@@ -34,6 +34,7 @@ To launch your first simulation with our lightweight physics simulator, mini-dan
 docker build env_minidancers_ns3 -t minidancers_ns3_img --build-arg USERNAME=teatime
 ```
 
+Then, run this command **from the DANCERS-docker repository***: 
 ```
 docker run --rm -it -e "TERM=xterm-256color" -e "DISPLAY=$DISPLAY" -v "/tmp/.X11-unix:/tmp/.X11-unix" -v "$HOME/.Xauthority:/root/.Xauthority:ro" -v "./env_minidancers_ns3/visualizer_v0.0.rviz:/home/teatime/.rviz2/visualizer_v0.0.rviz" --network host minidancers_ns3_img
 ```
