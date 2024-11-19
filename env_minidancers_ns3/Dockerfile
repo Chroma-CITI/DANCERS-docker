@@ -52,13 +52,13 @@ RUN echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/ns3/lib" >> ~/.bashrc && 
 ARG CACHE_BUST=1
 WORKDIR /home/$USERNAME
 # Get the source of the DANCERS components
-RUN git clone https://github.com/Chroma-CITI/DANCERS sim_ws --recursive -b mini-dancers
+RUN git clone https://github.com/Chroma-CITI/DANCERS sim_ws --recursive
 
 ENV ROS_WS=/home/$USERNAME/sim_ws
 
 WORKDIR /home/$USERNAME/sim_ws
 
 # Build all the ROS nodes (-i to run bash iteratively so that ~/.bashrc does not exit early | CMAKE -w flag to disable CMAKE warnings)
-RUN /bin/bash -c -i "colcon build --cmake-args -DCMAKE_CXX_FLAGS='-w'"
+RUN /bin/bash -c -i "colcon build --cmake-args -DCMAKE_CXX_FLAGS='-w' --packages-ignore gazebo_sim multirobot_control viragh_connector px4_msgs obstacle_detector"
 
 WORKDIR /home/$USERNAME
