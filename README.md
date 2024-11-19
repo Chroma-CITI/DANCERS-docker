@@ -3,9 +3,12 @@ Docker containers to install and run the DANCERS co-simulator.
 
 ## Install
 We provide the Dockerfile(s) to install the DANCERS co-simulator inside a container.
+
+There is 3 environments in this repository : `env_viragh_ns3`, `env_gazebo_ns3`, `env_minidancers_ns3`. They correspond to three different physics simulators that can be used with DANCERS. If it is your first time using DANCERS, we recommend using `env_minidancers_ns3`.
+
 1. The first step is to build a docker image from the provided Dockerfile. Example :
 ```
-docker build env_viragh_ns3 -t viragh_ns3_img --build-arg USERNAME=teatime
+docker build <environment-name> -t <image-name> --build-arg USERNAME=teatime
 ```
 This step requires an internet connexion and can take several minutes.
 2. Authorize docker to open windows on your host's X server:
@@ -46,7 +49,7 @@ A Rviz2 window should open and show 6 agents performing "string-like" flocking b
 ## Using the Viragh variation
 To launch your first simulation, run the following tmux script from the container:
 ```
-./sim_ws/src/tmux_scripts/start_dancers_viragh.sh
+./sim_ws/src/tmux_scripts/start_dancers_viragh.sh ~/flocking
 ```
 I opens a tmux session with several terminals and the windows of the Viragh's simulator GUI. The tmux session:
 **top-left** : Viragh's simulator</br>
