@@ -21,16 +21,16 @@ RUN apt update && apt install -y --no-install-recommends \
 # ========== ns-3 ==========
 # Download ns-3 and unpack it
 WORKDIR /usr
-RUN wget https://www.nsnam.org/release/ns-allinone-3.39.tar.bz2 && \
-tar -jxvf ns-allinone-3.39.tar.bz2
+RUN wget https://www.nsnam.org/release/ns-allinone-3.42.tar.bz2 && \
+tar -jxvf ns-allinone-3.42.tar.bz2
 
 # install ns-3 in /usr/ns3
-RUN cd ns-allinone-3.39/ns-3.39 &&\
+RUN cd ns-allinone-3.42/ns-3.42 &&\
 ./ns3 configure --prefix=/usr/ns3 &&\
 ./ns3 install
 
 # clean ns-3 archive
-RUN rm ns-allinone-3.39.tar.bz2
+RUN rm ns-allinone-3.42.tar.bz2
 
 # ========== user ==========
 ARG USERNAME=choreographer
