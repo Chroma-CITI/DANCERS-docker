@@ -59,6 +59,6 @@ ENV ROS_WS=/home/$USERNAME/sim_ws
 WORKDIR /home/$USERNAME/sim_ws
 
 # Build all the ROS nodes (-i to run bash iteratively so that ~/.bashrc does not exit early | CMAKE -w flag to disable CMAKE warnings)
-RUN /bin/bash -c -i "colcon build --cmake-args -DCMAKE_CXX_FLAGS='-w' --packages-ignore gazebo_sim multirobot_control viragh_connector px4_msgs obstacle_detector"
+RUN /bin/bash -c -i "colcon build --cmake-args -DCMAKE_CXX_FLAGS='-w' --packages-ignore gazebo_sim multirobot_control viragh_connector px4_msgs obstacle_detector offboard_flocking"
 
 WORKDIR /home/$USERNAME
